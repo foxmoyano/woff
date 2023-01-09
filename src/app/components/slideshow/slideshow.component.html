@@ -1,0 +1,36 @@
+
+<!-- Slider main container -->
+<div class="row">
+    <div class="swiper-container">
+        <swiper [slidesPerView]="1"
+                [spaceBetween]="10"
+                [navigation]="true"
+                [pagination]="{ type: 'bullets' }"
+                [centeredSlides]="true"
+                [keyboard]="{
+                    enabled: false
+                }"
+                [virtual]="true"
+                class="my-swiper">
+                    <ng-template swiperSlide *ngFor="let movie of movies">
+                        <div    
+                                class="swiper-slide-container" 
+                                [ngStyle]="{
+                                            'background-size': 'cover',
+                                            'background-repeat': 'no-repeat',
+                                            'background-position': 'center',
+                                            'background-image': 'url(https://image.tmdb.org/t/p/w500'+ movie.backdrop_path +')'
+                                }"
+                        >
+                            <div class="movie-description">
+                                <h3>{{ movie.title }}</h3>
+                                <p>
+                                    {{ movie.overview | slice:0:130 }}...
+                                </p>
+                                <br>
+                            </div>
+                        </div>                            
+                    </ng-template>
+        </swiper>
+    </div>
+</div>
