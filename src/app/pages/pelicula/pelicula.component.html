@@ -1,13 +1,17 @@
+<h3 class="header3 mt-3">Ficha General</h3>
+<hr>
+
+
 <div class="row animate__animated animate__fadeIn animate__faster" *ngIf="pelicula">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <!-- Imagen -->
         <img [src]="pelicula.poster_path | poster" 
              [alt]="pelicula.title"
              class="img-thumbnail">
     </div>
 
-    <div class="col-md-6">
-        <h3>{{ pelicula.title }}</h3>
+    <div class="col-md-8" style="padding-left: 30px;">
+        <h4 class="header4">{{ pelicula.title }}</h4>
 
         <div class="row ">
             <div class="col">
@@ -24,7 +28,25 @@
 
         <div class="row mt-3">
             <div class="col text-white">
-                {{ pelicula.overview }}
+                <strong>Titulo Original: </strong><small>{{ pelicula.original_title }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Fecha Lanzamiento: </strong><small>{{ pelicula.release_date | date:'dd-MM-yyyy'}}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>G&eacute;nero: </strong><span *ngFor="let genero of pelicula.genres"><small>{{ genero.name }}, </small></span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Sinopsis: </strong><small>{{ pelicula.overview }}</small>
             </div>
         </div>
 
@@ -36,12 +58,13 @@
                 </button>
             </div>
         </div>
-
     </div>
 </div>
 
+<h3 class="header3 mt-3">Elenco</h3>
+<hr>
 
-<div class="row mt-5" *ngIf="cast.length > 0">
+<div class="row mt-4 mb-4" *ngIf="cast.length > 0">
     <div class="col">
         <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
     </div>

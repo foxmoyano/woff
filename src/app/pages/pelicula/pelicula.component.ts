@@ -15,32 +15,29 @@ export class PeliculaComponent implements OnInit {
   public pelicula!: MovieResponse;
   public cast: Cast[] = [];
 
-  constructor( private activatedRoute: ActivatedRoute,
-               private peliculasService: PeliculasService,
-               private location: Location,
-               private router: Router ) { }
+  constructor(  private activatedRoute: ActivatedRoute,
+                private peliculasService: PeliculasService,
+                private location: Location,
+                private router: Router ) { }
 
   ngOnInit(): void {
-
     const { id } = this.activatedRoute.snapshot.params;
 
     combineLatest([
-
       this.peliculasService.getPeliculaDetalle( id ),
       this.peliculasService.getCast( id )
-
-    ]).subscribe( ( [pelicula, cast] ) => {
-      
+    ]).subscribe( ( [pelicula, cast] ) => {      
       if ( !pelicula ) {
         this.router.navigateByUrl('/home');
         return;
       }
 
-      this.pelicula = pelicula;  
+      this.pelicula = pelicula;
+      console.log('>>>>>>');
+      console.log(pelicula);
+
       this.cast = cast.filter( actor => actor.profile_path !== null );
     });
-
-
 
     // this.peliculasService.getPeliculaDetalle( id ).subscribe( movie => {
       // if ( !movie ) {
