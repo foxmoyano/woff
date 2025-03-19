@@ -4,19 +4,16 @@ body {
     background-color: #14161E;    
 }
 
-h1,h2,h3,h4,h5 {
+h1,h2,h4,h5 {
     color: white;
 }
 
-.header3 {
+h3 {
+    color: white;
     line-height: 1.3;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-}
-
-.header4 {
-    line-height: 1.3;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-}
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 5px 0px;
+};
 
 p {
     color: white;

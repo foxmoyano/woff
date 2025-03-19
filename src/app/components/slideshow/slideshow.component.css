@@ -3,8 +3,16 @@
     width: 100%;
 }
 
-.swiper-button-prev, .swiper-button-next {
+::ng-deep .swiper-button-prev, .swiper-button-next {
     color: white;
+}
+
+::ng-deep .swiper-button-next {
+    color: white;
+}
+
+::ng-deep .swiper-pagination-bullet {
+    background-color: white;
 }
 
 .movie-description {
@@ -17,6 +25,7 @@
 
 .my-swiper {
     height: 100%;
+    color: white;
 }
 
 .swiper-slide-container {

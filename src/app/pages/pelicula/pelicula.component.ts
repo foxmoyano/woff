@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
-import { Cast } from 'src/app/interfaces/credits-response';
-import { MovieResponse } from 'src/app/interfaces/movie-response';
+import { Cast, Crew } from 'src/app/interfaces/credits-response';
+import { Genre, MovieResponse } from 'src/app/interfaces/movie-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 import { Location } from '@angular/common';
 
@@ -14,6 +14,10 @@ import { Location } from '@angular/common';
 export class PeliculaComponent implements OnInit {
   public pelicula!: MovieResponse;
   public cast: Cast[] = [];
+  public crew: Crew[] = [];
+  public genres: String[] = [];
+  public directors: String[] = [];
+  public countries: String[] = [];
 
   constructor(  private activatedRoute: ActivatedRoute,
                 private peliculasService: PeliculasService,
@@ -26,17 +30,17 @@ export class PeliculaComponent implements OnInit {
     combineLatest([
       this.peliculasService.getPeliculaDetalle( id ),
       this.peliculasService.getCast( id )
-    ]).subscribe( ( [pelicula, cast] ) => {      
+    ]).subscribe( ( [pelicula, creditsReponse] ) => {      
       if ( !pelicula ) {
         this.router.navigateByUrl('/home');
         return;
       }
 
       this.pelicula = pelicula;
-      console.log('>>>>>>');
-      console.log(pelicula);
-
-      this.cast = cast.filter( actor => actor.profile_path !== null );
+      this.cast = creditsReponse.cast.filter( actor => actor.profile_path !== null );
+      this.directors = creditsReponse.crew.filter( crew => crew.job === 'Director').map(director => director.name);      
+      this.genres = pelicula.genres.map( genre => genre.name );
+      this.countries = pelicula.production_countries.map( country => country.name );
     });
 
     // this.peliculasService.getPeliculaDetalle( id ).subscribe( movie => {
@@ -59,3 +63,4 @@ export class PeliculaComponent implements OnInit {
   }  
 
 }
+

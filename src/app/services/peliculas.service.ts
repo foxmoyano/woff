@@ -63,13 +63,10 @@ export class PeliculasService {
     )
   }
 
-  getCast( id: string ):Observable<Cast[]> {
+  getCast( id: string ):Observable<CreditsReponse> {
     return this.http.get<CreditsReponse>(`${ this.baseUrl }/movie/${ id }/credits`, {
       params: this.params
-    }).pipe(
-      map( resp => resp.cast ),
-      catchError( err => of([]) ),
-    );
+    });
   }
 
 }
