@@ -1,0 +1,84 @@
+<div class="container">
+<h3>Ficha General</h3>
+<hr>
+
+<div class="row animate__animated animate__fadeIn animate__faster" *ngIf="pelicula">
+    <div class="col-md-4">
+        <!-- Imagen -->
+        <img [src]="pelicula.poster_path | poster" 
+            [alt]="pelicula.title"
+            class="img-thumbnail">
+    </div>
+
+    <div class="col-md-8" style="padding-left: 0px;">
+        <h4 class="header4">{{ pelicula.title }}</h4>
+
+        <div class="row ">
+            <div class="col-md-3">
+                <!--star-rating [value]="pelicula.vote_average" 
+                            [totalstars]="10"
+                            checkedcolor="yellow" 
+                            uncheckedcolor="grey" 
+                            size="15px"></star-rating-->
+            </div>
+            <div class="col-md-9 text-white">
+                {{ pelicula.vote_average | number:'1.1-2' }}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Titulo Original: </strong><small>{{ pelicula.original_title }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Direcci&oacute;n: </strong><small>{{ directors.join(', ') }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Fecha Lanzamiento: </strong><small>{{ pelicula.release_date | date:'dd-MM-yyyy'}}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>G&eacute;nero: </strong><small>{{ genres.join(', ') }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Producida En: </strong><small>{{ countries.join(', ') }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Sinopsis: </strong><small>{{ pelicula.overview }}</small>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn btn-outline-info"
+                        (click)="onRegresar()">
+                    Regresar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="header3 mt-3">Elenco</h3>
+<hr>
+
+<div class="row mt-4 mb-4" *ngIf="cast.length > 0">
+    <div class="col">
+        <!--app-cast-slideshow [cast]="cast"></app-cast-slideshow-->
+    </div>
+</div>
+</div>

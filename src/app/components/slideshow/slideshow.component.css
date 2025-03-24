@@ -1,0 +1,32 @@
+::ng-deep .swiper-button-prev, .swiper-button-next {
+    color: white !important;
+}
+
+::ng-deep .swiper-button-next {
+    color: white !important;
+}
+
+::ng-deep .swiper-pagination-bullet {
+    background-color: white !important;
+}
+
+.slide-custom {
+    width: 100%;
+    height: 400px;    
+    color: white;
+}
+
+.movie-description {
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    padding: 5px 30px;
+    position: absolute;
+    width: 100%;
+    color:white;
+}
+
+.my-swiper {
+    height: 100%;
+    --swiper-navigation-color: white;
+    --swiper-pagination-color: white;
+}
