@@ -18,17 +18,17 @@
             <!-- Buscador alineado a la derecha -->
             
             <div class="form-inline d-flex">
-                <input  #text
-                        class="form-control mr-sm-2 me-2" 
-                        (keyup.enter)="searchMovie(text.value)"
-                        type="search" 
-                        placeholder="Buscar" 
-                        aria-label="Buscar">
+                <input #text
+                       class="form-control mr-sm-2 me-2"
+                       (keyup.enter)="searchMovie(text.value)"
+                       type="search"
+                       placeholder="Buscar"
+                       aria-label="Buscar">
                 <button class="btn btn-outline-primary my-2 my-sm-0" 
                         (click)="searchMovie(text.value)"
                         type="button">
-                    Buscar
+                    <i class="fa fa-search"></i>  <!-- Ícono de lupa -->
                 </button>
-            </div>
+            </div>            
         </div>
 </nav>

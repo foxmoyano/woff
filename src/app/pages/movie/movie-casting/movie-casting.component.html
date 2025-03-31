@@ -1,0 +1,10 @@
+<div class="gallery">
+    @for (cast of casting$ | async; track cast.id) {
+        <div class="gallery-item">
+            <img [src]="cast.profile_path | poster" 
+                [alt]="cast.name" 
+                class="img-thumbnail"/>
+            <p>{{ cast.name }}</p>
+        </div>        
+    }
+</div>

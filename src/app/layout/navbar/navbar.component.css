@@ -1,0 +1,18 @@
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    width: auto;
+    flex-grow: 1;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;  /* Ajusta según tus necesidades */
+    border-radius: 50%;
+    margin-left: -5px; /* Ajusta si es necesario para pegar el botón al input */
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
-import { environment } from '../enviroments/enviroment';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CarteleraResponse {
   results:       Movie[];
@@ -130,6 +130,24 @@ export enum Department {
   Writing = "Writing",
 }
 
+export interface VideoResponse {
+  id: number;
+  results: Video[];
+}
+
+export interface Video {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number,
+  type: string;
+  official: boolean;
+  published_at: Date;
+  id: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -144,11 +162,11 @@ export class MovieService {
     return {
       api_key: `${environment.API_KEY}`,
       language: 'es-ES',
-      page: this.carteleraPage.toString()
+      page: 1
     }
   }  
 
-  getCartelera():Observable<Movie[]> {
+  getBillboard():Observable<Movie[]> {
     if ( this.cargando ) {
       return of([]);
     }
@@ -180,6 +198,54 @@ export class MovieService {
     }).pipe(
       catchError( err => of(null) )
     )
+  }
+  
+  getMoviesByPage(page: number): Observable<Movie[]> {
+    const params = {
+      api_key: `${environment.API_KEY}`,
+      language: 'es-ES',
+      page: page     
+    };
+  
+    return this.http.get<CarteleraResponse>(`${this.baseUrl}/movie/now_playing`, { params })
+      .pipe(
+        map(resp => resp.results)
+      );
+  }
+
+  getVideos(id: number): Observable<Video[]> {
+    const paramsEs = {
+      api_key: environment.API_KEY,
+      language: 'es-ES',
+      page: 1
+    };
+  
+    const paramsEn = {
+      api_key: environment.API_KEY,
+      language: 'en-EN',
+      page: 1
+    };
+
+    return this.http.get<VideoResponse>(`${this.baseUrl}/movie/${id}/videos`, { params: paramsEs }).pipe(
+      switchMap(resp => resp.results.length ? of(resp.results) : 
+        this.http.get<VideoResponse>(`${this.baseUrl}/movie/${id}/videos`, { params: paramsEn }).pipe(
+          map(resp => resp.results)
+        )
+      )
+    );
+  }
+
+  getCasting(id: number):Observable<Cast[]> {
+    const params = {
+      api_key: `${environment.API_KEY}`,
+      language: 'es-ES',
+      page: 1
+    };
+
+    return this.http.get<CreditsReponse>(`${this.baseUrl}/movie/${id}/credits`, {params})
+    .pipe(
+      map(resp => resp.cast)
+    );
   }  
 
 }

@@ -1,0 +1,25 @@
+.video-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.video-iframe {
+    flex: 1;  /* Esto asegura que ocupe la mitad del espacio */
+    padding-right: 20px;
+}
+
+.video-info {
+    flex: 1;  /* Esto asegura que ocupe la mitad del espacio */
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+video-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+video-info p {
+    font-size: 1em;
+    color: #555;
+}

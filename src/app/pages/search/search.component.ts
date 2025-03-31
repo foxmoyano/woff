@@ -1,12 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DashboardComponent } from "../../components/dashboard/dashboard.component";
+import { GalleryComponent } from "../../components/gallery/gallery.component";
 import { Movie, MovieService } from '../../services/movie.service';
 import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
-  imports: [DashboardComponent],
+  imports: [
+    GalleryComponent
+  ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })

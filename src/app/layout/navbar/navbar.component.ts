@@ -1,9 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [
+    InputGroupModule,
+    InputGroupAddonModule,
+    ButtonModule 
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

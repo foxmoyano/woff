@@ -1,5 +1,5 @@
 body {
-    background-color: #000000; /* Fondo negro */
+    background-color: #000000;
     background-image: 
         radial-gradient(circle at 50% 10%, rgba(75, 0, 130, 0.5) 0%, rgba(0, 0, 0, 1) 60%);
     background-size: cover;
@@ -11,7 +11,18 @@ body {
     overflow-x: hidden;
 }
 
+h2 {
+    color: white;
+    padding-bottom: 20px;
+}
+
 h3 {
+    font-size: 28px;
+    color: white;
+    padding: 20px 0px;
+}
+
+.title-slide-show {
     font-size: 28px;
     color: white;
     padding: 20px 0px;

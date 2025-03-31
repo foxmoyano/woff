@@ -19,10 +19,14 @@
 .movie-description {
     background-color: rgba(0, 0, 0, 0.3);
     bottom: 0;
-    padding: 5px 30px;
+    padding: 5px 20px;
     position: absolute;
     width: 100%;
     color:white;
+}
+
+.movie-description h3 {
+    padding: 0px;
 }
 
 .my-swiper {

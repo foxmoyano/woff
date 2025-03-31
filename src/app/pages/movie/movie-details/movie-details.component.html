@@ -1,0 +1,50 @@
+<div class="row animate__animated animate__fadeIn animate__faster mt-3" *ngIf="movie">
+    <div class="col-md-4">
+        <!-- Imagen -->
+        <img [src]="movie.poster_path | poster" 
+            [alt]="movie.title"
+            class="img-thumbnail">
+    </div>
+
+    <div class="col-md-8" style="padding-left: 0px;">
+        <div class="row">
+            <div class="col text-white">
+                <strong>Titulo Original: </strong><small>{{ movie.original_title }}</small>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6 d-flex align-items-center">
+                <strong class="me-2">Rating: </strong><app-star-rating [rating]="6" [maxStars]="10"></app-star-rating>                
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Fecha Lanzamiento: </strong><small>{{ movie.release_date | date:'dd-MM-yyyy'}}</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>G&eacute;nero: </strong><small>{{ genres.join(', ') }}</small>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Producida En: </strong><small>{{ countries.join(', ') }}</small>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-white">
+                <strong>Sinopsis: </strong><small>{{ movie.overview }}</small>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <button class="btn btn-outline-info"
+                        (click)="onGoBack()">
+                    Volver
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
