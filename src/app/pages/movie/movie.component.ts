@@ -8,6 +8,7 @@ import { TabsModule } from 'primeng/tabs';
 import { MovieDetailComponent } from './movie-details/movie-details.component';
 import { MovieVideosComponent } from "./movie-videos/movie-videos.component";
 import { MovieCastingComponent } from './movie-casting/movie-casting.component';
+import { COUNTRY_MAP } from '../../utils/country-map';
 
 
 @Component({
@@ -27,15 +28,19 @@ export default class MovieComponent implements OnInit {
   public movie!: MovieResponse;
   public cast: Cast[] = [];
   public crew: Crew[] = [];
-  public genres: String[] = [];
-  public directors: String[] = [];
-  public countries: String[] = [];  
+  public genres: string[] = [];
+  public directors: string[] = [];
+  public countries: string[] = [];  
 
   // Services
   private location: Location = inject(Location);
   private router: Router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private movieService: MovieService = inject(MovieService);
+
+  get translatedCountries(): string[] {
+    return this.countries.map(c => COUNTRY_MAP[c] ?? c);
+  }
   
   ngOnInit(): void {
     const { id } = this.activatedRoute.snapshot.params;
@@ -53,7 +58,8 @@ export default class MovieComponent implements OnInit {
       //this.cast = creditsReponse.cast.filter( actor => actor.profile_path !== null );
       //this.directors = creditsReponse.crew.filter( crew => crew.job === 'Director').map(director => director.name);      
       this.genres = pelicula.genres.map( genre => genre.name );
-      this.countries = pelicula.production_countries.map( country => country.name );
+      this.countries = pelicula.production_countries.map( country => country.iso_3166_1 );
+      console.log(this.countries);
     });
   }
 

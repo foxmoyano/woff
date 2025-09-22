@@ -1,6 +1,5 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { PosterPipe } from '../../pipes/poster.pipe';
-import { Observable, of } from 'rxjs';
 import { Movie, MovieService } from '../../services/movie.service';
 import { CommonModule } from '@angular/common';
 import { YearOnlyPipe } from '../../pipes/only-year.pipe';
@@ -19,21 +18,29 @@ import { PaginatorModule } from 'primeng/paginator';
   styleUrl: './gallery.component.css'  
 })
 export class GalleryComponent {
-  @Input() movies$: Observable<Movie[]> = of([]);
+  @Input() movies: WritableSignal<Movie[]> = signal<Movie[]>([]);
 
   first: number = 0;
   rows: number = 5;
 
   // Services
-  private router: Router = inject(Router);
-  private movieService: MovieService = inject(MovieService);
+  private router = inject(Router);
+  private movieService = inject(MovieService);
 
   onMovieClick(movie: any) {
     this.router.navigate(['/movie', movie.id ]);    
   }
 
   onPageChange(event: any) {    
-    this.movies$ = this.movieService.getMoviesByPage(event.page + 1);
+    this.movieService.getMoviesByPage(event.page + 1).subscribe({
+      next: (movies: Movie[]) => {
+        this.movies.set(movies);
+      },
+      error: (error: any) => {
+        console.error('Error loading movies by page:', error);
+        this.movies.set([]);
+      }
+    });
   }
 
 }

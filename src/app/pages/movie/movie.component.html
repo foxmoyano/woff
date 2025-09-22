@@ -1,34 +1,36 @@
 <div class="container">
-    <div class="main-content">        
-        <h2 class="header4">{{ movie?.title }} ({{ movie?.release_date | date:'yyyy'}})</h2>        
-        <p-tabs value="0">
-            <p-tablist>
-                <p-tab value="0"><i class="pi pi-file"></i> Ficha General</p-tab>
-                <p-tab value="1"><i class="pi pi-users"></i> Elenco</p-tab>
-                <p-tab value="2"><i class="pi pi-youtube"></i>Videos</p-tab>
-            </p-tablist>
-            <p-tabpanels>
-                <p-tabpanel value="0">                    
-                    <app-movie-detail   [movie]="movie" 
-                                        [genres]="genres"
-                                        [countries]="countries">
-                    </app-movie-detail>
-                </p-tabpanel>
-                <p-tabpanel value="1">
-                    @defer (on viewport) {
-                        <app-movie-casting [movieId]="movie.id" />
-                    } @placeholder {
-                        <div>Cargando...</div>
-                    }
-                </p-tabpanel>
-                <p-tabpanel value="2">
-                    @defer (on viewport) {
-                        <app-movie-videos [movieId]="movie.id" />
-                    } @placeholder {
-                        <div>Cargando...</div>
-                    }
-                </p-tabpanel>
-            </p-tabpanels>
-        </p-tabs>    
+    <div class="main-content">
+        @if ( movie) {
+            <h2 class="header4">{{ movie.title }} ({{ movie.release_date | date:'yyyy'}})</h2>        
+            <p-tabs value="0">
+                <p-tablist>
+                    <p-tab value="0"><i class="pi pi-file"></i> Ficha General</p-tab>
+                    <p-tab value="1"><i class="pi pi-users"></i> Elenco</p-tab>
+                    <p-tab value="2"><i class="pi pi-youtube"></i>Videos</p-tab>
+                </p-tablist>
+                <p-tabpanels>
+                    <p-tabpanel value="0">                    
+                        <app-movie-detail   [movie]="movie" 
+                                            [genres]="genres"
+                                            [countries]="countries">
+                        </app-movie-detail>
+                    </p-tabpanel>
+                    <p-tabpanel value="1">
+                        @defer (on viewport) {
+                            <app-movie-casting [movieId]="movie.id" />
+                        } @placeholder {
+                            <div>Cargando...</div>
+                        }
+                    </p-tabpanel>
+                    <p-tabpanel value="2">
+                        @defer (on viewport) {
+                            <app-movie-videos [movieId]="movie.id" />
+                        } @placeholder {
+                            <div>Cargando...</div>
+                        }
+                    </p-tabpanel>
+                </p-tabpanels>
+            </p-tabs>
+        }
     </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="gallery">
-    @for (cast of casting$ | async; track cast.id) {
+    @for (cast of casting(); track cast.id) {
         <div class="gallery-item">
             <img [src]="cast.profile_path | poster" 
                 [alt]="cast.name" 

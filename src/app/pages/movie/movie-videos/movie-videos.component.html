@@ -1,4 +1,4 @@
-@for (video of videos$ | async; track video.id ) {
+@for (video of videos(); track video.id ) {
     <div class="video-row mt-3">
         <div class="video-iframe">
             <iframe width="560" height="315"

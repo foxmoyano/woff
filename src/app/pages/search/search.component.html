@@ -1,8 +1,12 @@
-<h3 class="header3">Resultado de <small class="text-capitalize"> {{ texto }} </small></h3>
-<hr>
+<div class="container">
+    <div class="main-content">
+        <h3 class="header3">Resultado de <small class="text-capitalize"> {{ texto }} </small></h3>
+        <hr>
 
-<div class="row">
-    <div class="col">
-        <app-gallery [movies$]="movies$"></app-gallery>
+        <div class="row">
+            <div class="col">
+                <app-gallery [movies]="movies"></app-gallery>
+            </div>
+        </div>
     </div>
 </div>
